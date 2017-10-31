@@ -1,13 +1,16 @@
-int IN10 = 9;
-int IN11 = 10;
-int IN20 = 11;
-int IN21 = 12;
-int boton = 3;
-int botonManual = 4;
-int ad = 5;
-int at = 6;
-int de = 7;
-int iz = 8;
+//Pines de los motores
+const int IN10 = 8;
+const int IN11 = 9;
+const int IN20 = 10;
+const int IN21 = 11;
+//Pines de los botones
+const int boton = 2;
+const int botonManual = 3;
+const int ad = 4;
+const int at = 5;
+const int de = 6;
+const int iz = 7;
+//Seteo de botones.
 int valad = 0;
 int valat = 0;
 int valde = 0;
@@ -57,25 +60,26 @@ void loop()
     //Modo Manual
     if (botonManual == HIGH)
     {
-        if (ad == HIGH)
+        if (valad == HIGH)
         {
             Adelante();
         }
-        if (at == HIGH)
+        if (valat == HIGH)
         {
             Atras();
         }
-        if (de == HIGH)
+        if (valde == HIGH)
         {
             Derecha();
         }
-        if (iz == HIGH)
+        if (valiz == HIGH)
         {
             Izquierda();
         }
     }
 }
 
+//Control de Motores
 void Adelante()
 {
     digitalWrite(IN10, HIGH);
