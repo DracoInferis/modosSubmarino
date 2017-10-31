@@ -53,9 +53,6 @@ void loop()
         derecha();
         delay(1000);
     }
-    else
-    {
-    }
 
     //Modo Manual
     if (botonManual == HIGH)
