@@ -50,7 +50,7 @@ void loop()
         delay(1000);
         Adelante();
         delay(1000);
-        derecha();
+        Derecha();
         delay(1000);
     }
 
