@@ -4,13 +4,11 @@ const int IN11 = 9;
 const int IN20 = 10;
 const int IN21 = 11;
 //Pines de los botones
-const int boton = 2;
-const int botonManual = 3;
 const int ad = 4;
 const int at = 5;
 const int de = 6;
 const int iz = 7;
-//Seteo de botones.
+//Seteo de botones
 int valad = 0;
 int valat = 0;
 int valde = 0;
@@ -24,7 +22,6 @@ void setup()
     pinMode(IN11, OUTPUT);
     pinMode(IN20, OUTPUT);
     pinMode(IN21, OUTPUT);
-    pinMode(boton, INPUT);
     pinMode(ad, INPUT);
     pinMode(at, INPUT);
     pinMode(de, INPUT);
@@ -34,45 +31,38 @@ void setup()
 void loop()
 {
     //Lectura de botones
-    valManual = digitalRead(botonManual);
-    valBoton = digitalRead(boton);
     valad = digitalRead(ad);
     valat = digitalRead(at);
     valde = digitalRead(de);
     valiz = digitalRead(iz);
 
-    //Modo Automático
-    if (valBoton == HIGH)
+    if (valad == HIGH && valiz == LOW && valat == LOW && valde == LOW)
     {
         Adelante();
-        delay(1000);
-        Derecha();
-        delay(1000);
-        Adelante();
-        delay(1000);
-        Derecha();
-        delay(1000);
+        delayMicroseconds(50);
+        Parar();
+        delayMicroseconds(50);
     }
-
-    //Modo Manual
-    if (botonManual == HIGH)
+    if (valat == HIGH && valad == LOW && valiz == LOW && valde == LOW)
     {
-        if (valad == HIGH)
-        {
-            Adelante();
-        }
-        if (valat == HIGH)
-        {
-            Atras();
-        }
-        if (valde == HIGH)
-        {
-            Derecha();
-        }
-        if (valiz == HIGH)
-        {
-            Izquierda();
-        }
+        Atras();
+        delayMicroseconds(50);
+        Parar();
+        delayMicroseconds(50);
+    }
+    if (valde == HIGH && valad == LOW && valat == LOW && valiz == LOW)
+    {
+        Derecha();
+        delayMicroseconds(50);
+        Parar();
+        delayMicroseconds(50);
+    }
+    if (valiz == HIGH && valad == LOW && valat == LOW && valde == LOW)
+    {
+        Izquierda();
+        delayMicroseconds(50);
+        Parar();
+        delayMicroseconds(50);
     }
 }
 
@@ -81,7 +71,7 @@ void Adelante()
 {
     digitalWrite(IN10, HIGH);
     digitalWrite(IN11, LOW);
-    digitalWrite(IN20, HIGH);
+    digitalWrite(IN20, LOW);
     digitalWrite(IN21, LOW);
 }
 void Atras()
@@ -89,11 +79,11 @@ void Atras()
     digitalWrite(IN10, LOW);
     digitalWrite(IN11, HIGH);
     digitalWrite(IN20, LOW);
-    digitalWrite(IN21, HIGH);
+    digitalWrite(IN21, LOW);
 }
 void Izquierda()
 {
-    digitalWrite(IN10, HIGH);
+    digitalWrite(IN10, LOW);
     digitalWrite(IN11, LOW);
     digitalWrite(IN20, LOW);
     digitalWrite(IN21, HIGH);
@@ -101,7 +91,14 @@ void Izquierda()
 void Derecha()
 {
     digitalWrite(IN10, LOW);
-    digitalWrite(IN11, HIGH);
+    digitalWrite(IN11, LOW);
     digitalWrite(IN20, HIGH);
     digitalWrite(IN21, LOW);
+}
+void Parar()
+{
+  digitalWrite(IN10, LOW);
+  digitalWrite(IN11, LOW);
+  digitalWrite(IN20, LOW);
+  digitalWrite(IN21, LOW);
 }
